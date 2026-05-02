@@ -1,4 +1,3 @@
 dependencies {
-	//implementation project(':openjraw-plugin-api')
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
