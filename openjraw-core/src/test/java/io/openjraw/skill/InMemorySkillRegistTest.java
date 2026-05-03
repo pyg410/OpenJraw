@@ -50,5 +50,6 @@ public class InMemorySkillRegistTest {
         boolean removed = registry.remove("test-skill");
 
         assertThat(registry.contains("test-skill")).isFalse();
+        assertThat(removed).isTrue();
     }
 }
