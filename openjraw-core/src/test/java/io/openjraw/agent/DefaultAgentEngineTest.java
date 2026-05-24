@@ -25,7 +25,8 @@ public class DefaultAgentEngineTest {
         AgentEngine engine = new DefaultAgentEngine(
             registry, 
             new KeywordSkillRouter(), 
-            new DefaultPromptComposer()
+            new DefaultPromptComposer(),
+            new MockAgentModel()
         );
 
         AgentResponse response = engine.run(new AgentRequest(
@@ -48,7 +49,8 @@ public class DefaultAgentEngineTest {
         AgentEngine engine = new DefaultAgentEngine(
                 registry,
                 new KeywordSkillRouter(),
-                new DefaultPromptComposer()
+                new DefaultPromptComposer(),
+                new MockAgentModel()
         );
 
         AgentResponse response = engine.run(new AgentRequest(

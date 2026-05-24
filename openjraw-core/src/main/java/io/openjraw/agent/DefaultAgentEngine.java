@@ -29,11 +29,13 @@ public class DefaultAgentEngine implements AgentEngine {
     private final SkillRegistry skillRegistry;
     private final SkillRouter skillRouter;
     private final PromptComposer promptComposer;
+    private final AgentModel agentModel;
 
     public DefaultAgentEngine(
         SkillRegistry skillRegistry, 
         SkillRouter skillRouter, 
-        PromptComposer promptComposer
+        PromptComposer promptComposer,
+        AgentModel agentModel
     ) {
 
         if(skillRegistry == null) {
@@ -45,10 +47,14 @@ public class DefaultAgentEngine implements AgentEngine {
         if(promptComposer == null) {
             throw new IllegalArgumentException("PromptComposer must not be null");
         }
+        if(agentModel == null) {
+            throw new IllegalArgumentException("AgentModel must not be null");
+        }
 
         this.skillRegistry = skillRegistry;
         this.skillRouter = skillRouter;
         this.promptComposer = promptComposer;
+        this.agentModel = agentModel;
     }
 
     @Override
@@ -69,20 +75,13 @@ public class DefaultAgentEngine implements AgentEngine {
             selectedSkills
         );
 
-        String content = buildDebugResponse(composedPrompt);
+        String aiResponse = agentModel.generate(composedPrompt);
 
         return new AgentResponse(
-            content, 
+            aiResponse, 
             composedPrompt, 
             composedPrompt.usedSkillIds()
         );
-    }
-
-    private String buildDebugResponse(ComposedPrompt prompt) {
-        if(prompt.usedSkillIds().isEmpty()) {
-            return "No skill selected. User message: " + prompt.userPrompt();
-        }
-        return "Selected skills: " + String.join(", ", prompt.usedSkillIds());
     }
     
 }
