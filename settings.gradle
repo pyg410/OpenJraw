@@ -1,4 +1,5 @@
 rootProject.name = 'openjraw'
 
 include 'openjraw-core'
+include 'openjraw-ai'
 include 'openjraw-desktop'
