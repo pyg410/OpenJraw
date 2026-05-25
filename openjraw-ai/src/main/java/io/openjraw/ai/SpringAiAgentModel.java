@@ -1,3 +1,9 @@
+package io.openjraw.ai;
+
+import org.springframework.ai.chat.client.ChatClient;
+
+import io.openjraw.agent.AgentModel;
+import io.openjraw.prompt.ComposedPrompt;
 
 /**
  * Spring AI ChatClient 기반 AgentModel 구현체
